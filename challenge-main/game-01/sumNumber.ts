@@ -16,13 +16,19 @@ export class sumNumber{
     }
 
     sumNumbers() {
-
+        M = 0;
         for (let i = 0; i < this.items.length; i++) {
-	    M = this.items[i].sellIn + this.items[i+1].sellIn;  
-        
-            if (M==N) {
-		const points = new Array(this.items[i].sellIn, this.items[i+1].sellIn)		
-	    }          
+            for (let j = 1; j < this.items.length; j++) {
+                M = this.items[i].sellIn + this.items[j].sellIn;    
+            
+                if (M==N) {
+                    const points = new Array(this.items[i].sellIn, this.items[i+1].sellIn);		
+                } else {
+                    M = 0;
+                }
+                
+            }  
+                  
         }
 	
         return points;
