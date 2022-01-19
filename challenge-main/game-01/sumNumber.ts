@@ -15,22 +15,22 @@ export class sumNumber{
         this.items = items;
     }
 
-    sumNumbers() {
-        M = 0;
-        for (let i = 0; i < this.items.length; i++) {
-            for (let j = 1; j < this.items.length; j++) {
-                M = this.items[i].sellIn + this.items[j].sellIn;    
-            
+    sumNumbers() {        
+
+        let posicion = 1;
+        let end = this.items.length;
+        
+        for (let i = 0; i < end; i++) {
+            while (posicion <= end) {
+                M = this.items[i].sellIn + this.items[posicion].sellIn;
+
                 if (M==N) {
-                    const points = new Array(this.items[i].sellIn, this.items[i+1].sellIn);		
-                } else {
-                    M = 0;
-                }
-                
-            }  
-                  
+                    const points = new Array(this.items[i].sellIn, this.items[posicion].sellIn);		
+                    return points;
+                } 
+                posicion = posicion + 1;
+                M = 0;
+            }
         }
-	
-        return points;
     }
 }

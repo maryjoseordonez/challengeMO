@@ -1,45 +1,33 @@
-import { Item } from './item'
-import { 
-    updateQualityForAgedBrie, 
-    updateQualityForConcert, 
-    updateQualityForSulfuras, 
-    updateQualityForConjured, 
-    updateQualityForNormalItem} from './updateQuality'
+// Importing the functions needed for the calculations from the logic file.
+import {
+  ItemName,
+  Item,
+  updateCommon,
+  updateAgedBrie,
+  updateSulfuras,
+  updateBackstagePass,
+  updateConjuredItem,
+} from "./updateQuality";
 
-export class GildedRose {
-    items: Array<Item>;
-
-    constructor(items = [] as Array<Item>) {
-        this.items = items;
+export const updateItems = (items: Item[]): Item[] => {
+  // Mapping the array and using update functions depending on the item type.
+  return items.map((item) => {
+    if (item.name === ItemName.AgedBrie) {
+      return updateAgedBrie(item);
     }
 
-    updateQuality() :Item[]  {
-        this.items.forEach(currentItem => {
-            
-            switch (currentItem.name) {
-                case 'Aged Brie': {
-                    currentItem = updateQualityForAgedBrie(currentItem)
-                    break;
-                }
-                case 'Backstage passes to a TAFKAL80ETC concert': {
-                        currentItem = updateQualityForConcert(currentItem)
-                        break;
-                }
-                case  'Sulfuras, Hand of Ragnaros':  {
-                        currentItem = updateQualityForSulfuras(currentItem)
-                        break;
-                }
-                case 'Conjured':  {
-                        currentItem = updateQualityForConjured(currentItem)
-                        break;
-                }
-                default: {
-                        currentItem = updateQualityForNormalItem(currentItem)
-                }
-            }
-        })
-        return this.items;
+    if (item.name === ItemName.Sulfuras) {
+      return updateSulfuras(item);
     }
-}
 
+    if (item.name === ItemName.BackstagePass) {
+      return updateBackstagePass(item);
+    }
 
+    if (item.name === ItemName.Conjured) {
+      return updateConjuredItem(item);
+    }
+
+    return updateCommon(item);
+  });
+};
