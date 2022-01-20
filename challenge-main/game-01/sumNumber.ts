@@ -17,20 +17,16 @@ export class sumNumber{
 
     sumNumbers() {        
 
-        let posicion = 1;
+        let posicion = 0;
         let end = this.items.length;
-        
-        for (let i = 0; i < end; i++) {
-            while (posicion <= end) {
-                M = this.items[i].sellIn + this.items[posicion].sellIn;
 
-                if (M==N) {
-                    const points = new Array(this.items[i].sellIn, this.items[posicion].sellIn);		
-                    return points;
-                } 
-                posicion = posicion + 1;
-                M = 0;
-            }
+        while (posicion < end) {
+            M = this.items[posicion].sellIn + this.items[end].sellIn;
+            if (M == N) {
+                const points = new Array(this.items[posicion].sellIn, this.items[end].sellIn);		
+                return points;
+            } else if (M < N) posicion++;
+                else end--;
         }
     }
 }
