@@ -6,27 +6,17 @@ export class Item {
     }
 }
 
-export class sumNumber{
-    items: Array<Item>; 
-    let M;
-    let N;
-
-    constructor(items = [] as Array<Item>) {
-        this.items = items;
-    }
-
-    sumNumbers() {        
-
-        let posicion = 0;
-        let end = this.items.length;
+function sumNumber(items:Array<Item>, int N) {
+    let posicion = 0;
+    let end = items.length;
 
         while (posicion < end) {
-            M = this.items[posicion].sellIn + this.items[end].sellIn;
+            M = 0;
+            M = items[posicion].sellIn + items[end].sellIn;
             if (M == N) {
-                const points = new Array(this.items[posicion].sellIn, this.items[end].sellIn);		
+                const points = new Array(items[posicion].sellIn, items[end].sellIn);		
                 return points;
             } else if (M < N) posicion++;
                 else end--;
         }
-    }
 }
